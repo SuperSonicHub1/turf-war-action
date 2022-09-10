@@ -1,0 +1,19 @@
+language: bash
+script:
+  - curl http://ipv4.games/claim?name=ghrmbell -o claim.html
+  - git config user.name "Montana"
+  - git config user.email "montana@travis-ci.org"
+  - git add claim.html
+  - timestamp=$(date -u)
+  - |
+      address=$(python -c "import re
+      with open('claim.html') as f:
+          regex = r'land at ((?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))'
+          text = f.read()
+          matches = re.findall(regex, text)
+      if matches:
+          print(matches[0])
+      else:
+          print('<not found>')")
+  - git commit -m "Got IP address ${address} at ${timestamp}"
+  - git push
