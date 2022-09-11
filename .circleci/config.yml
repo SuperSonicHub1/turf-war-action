@@ -32,7 +32,7 @@ jobs:
             else:
               print('<not found>')")
             git commit -m "Got IP address ${address} at ${timestamp}"
-            git push
+            git push --set-upstream origin circleci-project-setup
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
