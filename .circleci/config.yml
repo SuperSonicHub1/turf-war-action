@@ -2,10 +2,6 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
-triggers:
-  - schedule:
-      cron: "* * * * *"
-
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
@@ -41,6 +37,13 @@ jobs:
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  say-hello-workflow:
+  claim-workflow:
+    triggers:
+      - schedule:
+          cron: "* * * * *"
+          filters:
+            branches:
+                only:
+                  - master
     jobs:
       - claim
