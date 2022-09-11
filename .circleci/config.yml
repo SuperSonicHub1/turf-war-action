@@ -15,7 +15,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Claim IP address and commit changes"
+          name: "Claim IP address and commit changess"
           command: |
             curl http://ipv4.games/claim?name=ghrmbell -o claim.html
             git config user.name "Automated"
@@ -23,7 +23,7 @@ jobs:
             git add claim.html
             timestamp=$(date -u)
             address=$(python -c "import re
-            print(len("${GITHUB_PERSONAL_TOKEN}"))
+            print(len('${GITHUB_PERSONAL_TOKEN}'))
             with open('claim.html') as f:
               regex = r'land at ((?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))'
               text = f.read()
